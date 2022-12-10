@@ -1,0 +1,39 @@
+//- This is a Pug template
+
+//- Import the Bootstrap and jQuery libraries
+script(src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js")
+link(rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css")
+
+//- Define a card component that takes a card object as a parameter
+mixin card(content)
+    .card
+        a(href=content.video,target="_blank")
+            img.card-img-top(src=content.image, alt=content.title)
+        .card-body
+            h5.card-title=content.title
+            p.card-text= content.time
+            p.card-text= content.views
+        //- Add a style rule to set the max-width property to 500px
+    style
+      | .card {
+      |   max-width: 500px;
+      | }
+
+
+//- Define a cards component that takes a list of cards as a parameter
+mixin cards(contents)
+    
+  .container
+    //- Add an input element with the type attribute set to "text"
+    input(type="text")
+    //- Add a button element with a click event listener that calls a function in Node.js
+    button(type="button" onclick="submit()") Submit
+    .card-deck.flex-column
+      each content in contents
+        +card(content)
+
+//- Define the main section of the page
+section
+  -
+  //- Use the cards mixin to render the list of cards, passing the cards data as a local variable
+  +cards(contents)
